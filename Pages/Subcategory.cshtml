@@ -1,0 +1,25 @@
+﻿@page "{id:int}"
+@model Snackistwo.Pages.SubcategoryModel
+@{
+    ViewData["Title"] = "Topics in " + Model.Subcategory.Name;
+}
+
+@if (Model.User != null)
+{
+    <a asp-page="/Createtopic" asp-route-id="@Model.Subcategory.Id">Create New Topic</a>
+}
+<br />
+
+<div class="container">
+    <h1 class="my-4">Topics in @Model.Subcategory.Name</h1>
+    <div class="list-group">
+        @foreach(var topic in Model.Topics)
+        {
+            <div class="list-group-item">
+                <h5 class="mb-1"><a asp-page="/Topic" asp-route-id="@topic.Id">@topic.Title</a></h5>
+               <p>@topic.Content</p>
+               
+            </div>
+        }
+    </div>
+</div>

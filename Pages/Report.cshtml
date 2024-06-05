@@ -1,0 +1,34 @@
+﻿@page "{id:int}"
+@model Snackistwo.Pages.ReportModel
+@{
+    ViewData["Title"] = "Report Reply";
+}
+@if (Model.MyUser != null)
+{
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h2>Report Reply</h2>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <input type="hidden" asp-for="Reply.Id" />
+                    <input type="hidden" asp-for="Reply.TopicId" />
+                    <input type="hidden" asp-for="Reply.IsReported" />
+                    <input type="hidden" asp-for="Reply.Content" />
+                    <input type="hidden" asp-for="Reply.UserId" />
+                    <input type="hidden" asp-for="Reply.UserName" />
+
+                    <div asp-validation-summary="All"></div>
+                    <div class="form-group">
+                        <label asp-for="ReportMessage">Message</label>
+                        <textarea asp-for="ReportMessage" rows="5" cols="50" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Submit Report" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}

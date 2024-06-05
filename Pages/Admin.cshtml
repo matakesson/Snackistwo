@@ -1,0 +1,18 @@
+﻿@page
+@model Snackistwo.Pages.AdminModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container mt-5">
+    <h1>@ViewData["Title"]</h1>
+    <div class="list-group">
+        <a asp-page="Admin/CategoryAdmin/Index" class="list-group-item list-group-item-action">Manage Categories</a>
+        <a asp-page="Admin/SubCategoryAdmin/Index" class="list-group-item list-group-item-action">Manage SubCategories</a>
+        <a asp-page="Admin/TopicAdmin/Index" class="list-group-item list-group-item-action">Manage Topics</a>
+        <a asp-page="Admin/ReplyAdmin/Index" class="list-group-item list-group-item-action">Manage Replies</a>
+        <a asp-page="Admin/MessageAdmin/Index" class="list-group-item list-group-item-action">Manage Messages</a>
+        <a asp-page="RoleAdmin/Index" class="list-group-item list-group-item-action">Manage Roles</a>
+        <a asp-page="/ReportedMessages" class="list-group-item list-group-item-action">Manage Reports</a>
+    </div>
+</div>

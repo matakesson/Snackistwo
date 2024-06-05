@@ -1,0 +1,20 @@
+﻿@page
+@model Snackistwo.Pages.ReportedMessagesModel
+@{
+}
+
+@foreach (var r in Model.Reports)
+{
+    <li class="list-group-item">
+        <div class="media">
+            <div class="media-body">
+                <p>@r.Content</p>
+                <small class="text-muted">Posted on @r.PostedOn by @r.UserName</small>
+                
+                    <div class="alert alert-danger" role="alert">
+                        Report Message: @r.ReportMessage
+                    </div>
+            </div>
+        </div>
+    </li>
+}

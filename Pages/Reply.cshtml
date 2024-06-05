@@ -1,0 +1,27 @@
+﻿@page "{id:int}"
+@model Snackistwo.Pages.ReplyModel
+@{
+    ViewData["Title"] = "Reply to Topic";
+}
+
+@if (Model.MyUser != null)
+{
+    <div class="container my-5">
+        <h2>Reply to Topic</h2>
+
+        <form method="post">
+            <input type="hidden" asp-for="Reply.TopicId" />
+            <input type="hidden" asp-for="Reply.UserId" />
+            <input type="hidden" asp-for="Reply.UserName" />
+
+            <div asp-validation-summary="All"></div>
+            <div class="form-group">
+                <label asp-for="Reply.Content">Message</label>
+                <textarea asp-for="Reply.Content" rows="5" cols="50" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add Post" />
+            </div>
+        </form>
+    </div>
+}

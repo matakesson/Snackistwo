@@ -1,0 +1,62 @@
+﻿@page "{id:int}"
+@model Snackistwo.Pages.TopicModel
+@{
+    ViewData["Title"] = Model.Topic.Title;
+}
+
+<div class="container mt-5">
+    @if (Model.Topic == null)
+    {
+        <div class="alert alert-warning" role="alert">
+            Topic Not Found
+        </div>
+    }
+    else
+    {
+        <div class="card mb-4">
+            <div class="card-header">
+                <h2 class="card-title">@Model.Topic.Title</h2>
+                <div class="d-flex align-items-center">
+                    @if (!string.IsNullOrEmpty(Model.TopicUserImage))
+                    {
+                        <img src="/userImages/@Model.TopicUserImage" alt="@Model.TopicUserName" class="rounded-circle" style="width: 40px; height: 40px; margin-right: 10px;" />
+                    }
+                <small class="text-muted">Posted on @Model.Topic.PostedOn by @Model.TopicUserName</small>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="card-text">@Model.Topic.Content</p>
+            </div>
+        </div>
+
+        <a asp-page="/Reply" asp-route-id="@Model.Topic.Id">Reply</a>
+
+        <div class="card">
+            <div class="card-header">
+                <h3>Replies</h3>
+            </div>
+            <ul class="list-group list-group-flush">
+                @foreach (var reply in Model.Replies)
+                {
+                    <li class="list-group-item">
+                        <div class="media">
+                            <div class="media-body">
+                                <p>@reply.Key.Content</p>
+                                <img src="/userImages/@reply.Value" alt="@reply.Value" class="rounded-circle" style="width: 40px; height: 40px; margin-right: 10px;" />
+                                <small class="text-muted">Posted on @reply.Key.PostedOn by @reply.Key.UserName</small>
+                                <a asp-page="/Report" asp-route-id="@reply.Key.Id" class="btn btn-link ml-auto">Report</a>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+            @if (!Model.Replies.Any())
+            {
+                <div class="card-body">
+                    <p class="text-muted">No replies yet. Be the first to reply!</p>
+                </div>
+            }
+        </div>
+    }
+</div>
+

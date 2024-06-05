@@ -1,0 +1,40 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="indexcontainer">
+    <h1 class="my-4">Categories</h1>
+    <div class="row">
+        @if(Model.Categories != null)
+        {
+            foreach(var category in Model.Categories)
+            {
+                <div class="col-md-4">
+                    <div class="indexcard mb-4" shadow-sm>
+                        <div class="indexcard-header">
+                           <h2 class="my-0 font-weight-normal">@category.Name</h2>
+                        </div>
+                        <div class="card-body">
+                           <ul class="list-unstyled mt-3 mb-4">
+                                @if(Model.Subcategories != null)
+                                {
+                                    foreach(var subcategory in Model.Subcategories)
+                                    {
+                                        @if(subcategory.CategoryId == category.Id)
+                                        {
+                                            <li><a asp-page="/Subcategory" asp-route-id="@subcategory.Id">@subcategory.Name </a> -  <em>@subcategory.Description</em></li>
+                                        }
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+
+</div>

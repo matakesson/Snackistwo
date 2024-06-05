@@ -1,0 +1,56 @@
+﻿@page
+@model Snackistwo.Pages.MessagesModel
+@{
+    ViewData["Title"] = "Messages";
+}
+
+<div class="container mt-5">
+    <h1>Messages</h1>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <h3>Inbox</h3>
+            <ul class="list-group">
+                @foreach (var message in Model.Messages)
+                {
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h5>@message.Title</h5>
+                                <p>@message.Content</p>
+                                <small class="text-muted">From: @message.SenderName | Sent: @message.SentOn</small>
+                            </div>
+                        </div>
+                    </li>
+                }
+                @if (!Model.Messages.Any())
+                {
+                    <li class="list-group-item">
+                        <p class="text-muted">No messages</p>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h3>Send a Message</h3>
+            <form method="post">
+                <div class="form-group">
+                    <label asp-for="NewMessage.RecipientName">To</label>
+                    <input asp-for="NewMessage.RecipientName" class="form-control" />
+                    <span asp-validation-for="NewMessage.RecipientId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NewMessage.Title">Title</label>
+                    <input asp-for="NewMessage.Title" class="form-control" />
+                    <span asp-validation-for="NewMessage.Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NewMessage.Content">Content</label>
+                    <textarea asp-for="NewMessage.Content" class="form-control"></textarea>
+                    <span asp-validation-for="NewMessage.Content" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Send</button>
+            </form>
+        </div>
+    </div>
+</div>

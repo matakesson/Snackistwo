@@ -1,0 +1,72 @@
+﻿@page
+@model Snackistwo.Pages.Admin.ReplyAdmin.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Reply[0].Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reply[0].TopicId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reply[0].PostedOn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reply[0].UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reply[0].UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reply[0].IsReported)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reply[0].ReportMessage)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Reply) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TopicId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsReported)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportMessage)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
